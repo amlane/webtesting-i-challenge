@@ -31,5 +31,21 @@ describe("enhancer.js", () => {
       const item = { enhancement: 10, durability: 100 };
       expect(enhancer.fail(item).durability).toBe(95);
     });
+
+    it("should subtract 10 from durablity when enhancement is greater than or equal to 15", () => {
+      const item = { enhancement: 15, durability: 80 };
+      expect(enhancer.fail(item).durability).toBe(70);
+    });
+
+    it("should subtract 1 from enhancement when enhancement is greater than 16", () => {
+      const item = { enhancement: 15, durability: 100 };
+      expect(enhancer.fail(item).durability).toBe(90);
+    });
+
+    it("should return 0 if item.durability is equal to 0", () => {
+      const item = { enhancement: 17, durability: 4 };
+      expect(enhancer.fail(item).durability).toBe(0);
+      expect(enhancer.fail(item).enhancement).toBe(16);
+    });
   });
 });
