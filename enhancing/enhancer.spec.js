@@ -48,4 +48,16 @@ describe("enhancer.js", () => {
       expect(enhancer.fail(item).enhancement).toBe(16);
     });
   });
+
+  describe("get()", () => {
+    it("should return same name if enhancement is equal to zero", () => {
+      const item = { name: "Yo mama", enhancement: 0 };
+      expect(enhancer.get(item).name).toBe("Yo mama");
+    });
+
+    it("should return name with enhancement level", () => {
+      const item = { name: "Yo daddy", enhancement: 5 };
+      expect(enhancer.get(item).name).toBe("[+5] Yo daddy");
+    });
+  });
 });
